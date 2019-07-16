@@ -120,13 +120,14 @@ const dir = join(tmpdir(), "test");
 
 const dirExists = fs.existsSync(dir);
 
+fs.unlink(dir, function(error));
 fs.rmdir(dir, function(error) {
-    console.log();
-    // if (!error) {
-    //     console.log(delete(file));
-    // } else {
-    //     console.error("Il y a un soucis: " + error);
-    // }
+    // console.log();
+    if (!error) {
+        console.log(delete(file));
+    } else {
+        console.error("Il y a un soucis: " + error);
+    }
 });
 
 // console.log();
