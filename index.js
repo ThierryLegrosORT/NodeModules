@@ -37,4 +37,10 @@ console.log();
 const fs = require("fs"); // déclarer en const pour utilisation multiple, ou require("fs").[extend] pour utilisation ponctuelle
 const stdout = fs.createWriteStream("./stdout.log");
 const stderr = fs.createWriteStream("./stderr.log");
+
+const Console = require("console").Console;
+const logger = new Console({ stdout, stderr });
+
 console.log();
+logger.log(`${Date.now()} :Salut !`);
+logger.error(`${new Date()} :Une erreur est interviendue`);
