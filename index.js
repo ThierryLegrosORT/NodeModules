@@ -35,7 +35,7 @@
 // console.log();
 
 
-// MODULE FS
+// MODULE CONSOLE
 // const fs = require("fs"); // déclarer en const pour utilisation multiple, ou require("fs").[extend] pour utilisation ponctuelle
 // const stdout = fs.createWriteStream("./stdout.log");
 // const stderr = fs.createWriteStream("./stderr.log");
@@ -71,28 +71,95 @@
 // const pathWin = require("path").win32;
 // console.log(pathWin.join("moi", "test"));
 
-// MODULE URL
-const url = "https://dwaps.fr:8787/ort-toulouse/exercices/?eval=react#lab1";
-const dwapsUrl = new URL(url);
+// // MODULE URL
+// const url = "https://dwaps.fr:8787/ort-toulouse/exercices/?eval=react#lab1";
+// const dwapsUrl = new URL(url);
 
-console.log(dwapsUrl.toString());
-console.log(dwapsUrl);
-console.log(dwapsUrl.hostname);
+// console.log(dwapsUrl.toString());
+// console.log(dwapsUrl);
+// console.log(dwapsUrl.hostname);
 
-const sp = dwapsUrl.searchParams;
+// const sp = dwapsUrl.searchParams;
 
-sp.set("newKey", "test");
-console.log(dwapsUrl.toString());
+// sp.set("newKey", "test");
+// console.log(dwapsUrl.toString());
 
-console.log();
-console.log(sp.get("eval"));
+// console.log();
+// console.log(sp.get("eval"));
 
-// SUPPRESSION D'ELEMENTS DANS L'URL
-// const format = require("url").format;
-const options = {
-    auth: false,
-    search: false,
-    fragment: false,
-};
-console.log();
-console.log(require("url").format(dwapsUrl, options));
+// // SUPPRESSION D'ELEMENTS DANS L'URL
+// // const format = require("url").format;
+// const options = {
+//     auth: false,
+//     search: false,
+//     fragment: false,
+// };
+// console.log();
+// console.log(require("url").format(dwapsUrl, options));
+
+// MODULE FS
+const fs = require("fs");
+const { join } = require("path");
+const filename = join(__dirname, "test.txt");
+// const file = join(__dirname, "test");
+const { tmpdir } = require("os");
+
+// const dir = join(String(tmpdir), "test"); // meme chose que ligne ci-dessous
+const dir = join(tmpdir(), "test");
+
+// console.log(filename);
+
+// fs.readFile(filename, function(error, content) {
+//     if (!error) console.log(content + "");
+//     else console.error(error);
+// });
+
+// fs.readdir(".", function(error, filename) {
+//     console.log(String(filename));
+// });
+
+const dirExists = fs.existsSync(dir);
+
+fs.rmdir(dir, function(error) {
+    console.log();
+    // if (!error) {
+    //     console.log(delete(file));
+    // } else {
+    //     console.error("Il y a un soucis: " + error);
+    // }
+});
+
+// console.log();
+// console.log(tmpdir());
+// console.log(__filename);
+// console.log(dir);
+
+fs.mkdir(dir, function(error) {
+    const directory = join(dir, "test-copy.js");
+
+    fs.copyFile(__filename, directory, function(error) {
+        if (!error)
+            console.log(`La copie vers ${directory} s'est bien passée`);
+        else
+            console.error("Il y a eut un soucis: " + error);
+
+    });
+});
+
+// MEME CHOSE QUU'AU DESSUS AVEC UNE OPTION DE VERIFICATION D'EXISTENCE
+// if (!dirExists) {
+//     fs.mkdir(directory, function(error) {
+//       if (error) return;
+
+//       fs.copyFile(filename, filename, function (error) {
+//         if (error) return;
+//         console.log('Le fichier index.js a bien été copié dans le fichier de destination');
+//       });
+//     });
+//   }
+//   else {
+//     fs.copyFile(filename, filename, function (error) {
+//       if (error) return;
+//       console.log('Le fichier index.js a bien été copié dans le fichier de destination');
+//     });
+//   }
