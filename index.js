@@ -34,6 +34,8 @@
 // console.timeEnd("myTimer");
 // console.log();
 
+
+// MODULE FS
 // const fs = require("fs"); // déclarer en const pour utilisation multiple, ou require("fs").[extend] pour utilisation ponctuelle
 // const stdout = fs.createWriteStream("./stdout.log");
 // const stderr = fs.createWriteStream("./stderr.log");
@@ -45,6 +47,8 @@
 // logger.log(`${Date.now()} :Salut !`);
 // logger.error(`${new Date()} :Une erreur est interviendue`);
 
+
+// MODULE PATH
 const path = require("path");
 
 console.log(path.dirname("/test/testeur/test.txt"));
