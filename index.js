@@ -97,55 +97,55 @@
 // console.log();
 // console.log(require("url").format(dwapsUrl, options));
 
-// MODULE FS
-const fs = require("fs");
-const { join } = require("path");
-const filename = join(__dirname, "test.txt");
-// const file = join(__dirname, "test");
-const { tmpdir } = require("os");
+// // MODULE FS
+// const fs = require("fs");
+// const { join } = require("path");
+// const filename = join(__dirname, "test.txt");
+// // const file = join(__dirname, "test");
+// const { tmpdir } = require("os");
 
-// const dir = join(String(tmpdir), "test"); // meme chose que ligne ci-dessous
-const dir = join(tmpdir(), "test");
+// // const dir = join(String(tmpdir), "test"); // meme chose que ligne ci-dessous
+// const dir = join(tmpdir(), "test");
 
-// console.log(filename);
+// // console.log(filename);
 
-// fs.readFile(filename, function(error, content) {
-//     if (!error) console.log(content + "");
-//     else console.error(error);
+// // fs.readFile(filename, function(error, content) {
+// //     if (!error) console.log(content + "");
+// //     else console.error(error);
+// // });
+
+// // fs.readdir(".", function(error, filename) {
+// //     console.log(String(filename));
+// // });
+
+// const dirExists = fs.existsSync(dir);
+
+// fs.unlink(dir, function(error));
+// fs.rmdir(dir, function(error) {
+//     // console.log();
+//     if (!error) {
+//         console.log(delete(file));
+//     } else {
+//         console.error("Il y a un soucis: " + error);
+//     }
 // });
 
-// fs.readdir(".", function(error, filename) {
-//     console.log(String(filename));
+// // console.log();
+// // console.log(tmpdir());
+// // console.log(__filename);
+// // console.log(dir);
+
+// fs.mkdir(dir, function(error) {
+//     const directory = join(dir, "test-copy.js");
+
+//     fs.copyFile(__filename, directory, function(error) {
+//         if (!error)
+//             console.log(`La copie vers ${directory} s'est bien passée`);
+//         else
+//             console.error("Il y a eut un soucis: " + error);
+
+//     });
 // });
-
-const dirExists = fs.existsSync(dir);
-
-fs.unlink(dir, function(error));
-fs.rmdir(dir, function(error) {
-    // console.log();
-    if (!error) {
-        console.log(delete(file));
-    } else {
-        console.error("Il y a un soucis: " + error);
-    }
-});
-
-// console.log();
-// console.log(tmpdir());
-// console.log(__filename);
-// console.log(dir);
-
-fs.mkdir(dir, function(error) {
-    const directory = join(dir, "test-copy.js");
-
-    fs.copyFile(__filename, directory, function(error) {
-        if (!error)
-            console.log(`La copie vers ${directory} s'est bien passée`);
-        else
-            console.error("Il y a eut un soucis: " + error);
-
-    });
-});
 
 // MEME CHOSE QUU'AU DESSUS AVEC UNE OPTION DE VERIFICATION D'EXISTENCE
 // if (!dirExists) {
@@ -164,3 +164,15 @@ fs.mkdir(dir, function(error) {
 //       console.log('Le fichier index.js a bien été copié dans le fichier de destination');
 //     });
 //   }
+
+// MODULE EVENTS
+const EventEmitter = require("events");
+const emitter = new EventEmitter();
+const months = ["janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "decembre"];
+
+emitter.on("date", function(date) {
+    console.log("Date: %d%d%d", date.getDate(), months[date.getMonth()], date.getFullYear());
+});
+
+emitter.emit("date", new Date(1981, 0, 23));
+console.log("date", new Date());
