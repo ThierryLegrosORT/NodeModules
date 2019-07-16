@@ -49,24 +49,50 @@
 
 
 // MODULE PATH
-const path = require("path");
+// const path = require("path");
 
-console.log(path.dirname("/test/testeur/test.txt"));
-console.log(path.basename("/test/testeur/test.txt"));
-console.log(path.extname(__filename));
+// console.log(path.dirname("/test/testeur/test.txt"));
+// console.log(path.basename("/test/testeur/test.txt"));
+// console.log(path.extname(__filename));
+
+// console.log();
+// console.log(path.sep);
+// console.log(path.join("test", "testeur", "test.txt"));
+// console.log();
+
+// const from_to = path.relative("..", ".");
+// const absolutePath = path.resolve(".", "abc", "test.txt");
+// console.log(from_to);
+// console.log(absolutePath);
+// console.log();
+// console.log(path.parse("/test.txt"));
+// console.log();
+
+// const pathWin = require("path").win32;
+// console.log(pathWin.join("moi", "test"));
+
+// MODULE URL
+const url = "https://dwaps.fr:8787/ort-toulouse/exercices/?eval=react#lab1";
+const dwapsUrl = new URL(url);
+
+console.log(dwapsUrl.toString());
+console.log(dwapsUrl);
+console.log(dwapsUrl.hostname);
+
+const sp = dwapsUrl.searchParams;
+
+sp.set("newKey", "test");
+console.log(dwapsUrl.toString());
 
 console.log();
-console.log(path.sep);
-console.log(path.join("test", "testeur", "test.txt"));
-console.log();
+console.log(sp.get("eval"));
 
-const from_to = path.relative("..", ".");
-const absolutePath = path.resolve(".", "abc", "test.txt");
-console.log(from_to);
-console.log(absolutePath);
+// SUPPRESSION D'ELEMENTS DANS L'URL
+// const format = require("url").format;
+const options = {
+    auth: false,
+    search: false,
+    fragment: false,
+};
 console.log();
-console.log(path.parse("/test.txt"));
-console.log();
-
-const pathWin = require("path").win32;
-console.log(pathWin.join("moi", "test"));
+console.log(require("url").format(dwapsUrl, options));
